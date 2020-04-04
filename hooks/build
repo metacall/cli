@@ -1,3 +1,5 @@
+#!/usr/bin/env sh
+
 #
 #	MetaCall CLI by Parra Studios
 #	Porable Command Line Interface for MetaCall using Docker.
