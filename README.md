@@ -4,14 +4,17 @@ This repository provides a Docker fallback option for architectures and operativ
 
 ## Build Commands
 
+
+
 ```sh
 sed -i 's/FROM metacall/#FROM metacall/' Dockerfile
 docker build --build-arg DISABLE_CACHE=`date +%s` -t metacall/cli .
-docker run --rm -it metacall/cli
 ```
 
-## Set up CLI
+## Set Up `metacall` Command
 
-TODO
+This snippet of code must be pasted in your `.bashrc` or `.zshrc`:
 
-`.bashrc` `.zshrc`
+```sh
+alias metacall='function mc() { docker run --rm --network host -e "LOADER_SCRIPT_PATH=/metacall/source" -v `pwd`:/metacall/source -it metacall/cli $@; }; mc'
+```
