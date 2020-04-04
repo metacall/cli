@@ -17,6 +17,12 @@
 #	limitations under the License.
 #
 
+# Create a dependency with MetaCall Core Image in order to trigger Docker Hub builds
+FROM metacall/core AS dependency
+
+# TODO: This dependency must be from metacall/distributable
+# instead from the core, but it is not automated yet.
+
 # MetaCall CLI Image
 FROM alpine:latest
 
