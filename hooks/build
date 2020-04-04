@@ -20,8 +20,8 @@
 #
 
 # Build CLI Image
-docker build
-	--build-arg DISABLE_CACHE=`date +%s`
-	-t metacall/cli
-	-f $DOCKERFILE_PATH
+docker build \
+	--build-arg DISABLE_CACHE=`date +%s` \
+	-t metacall/cli \
+	-f $DOCKERFILE_PATH \
 	..
