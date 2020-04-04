@@ -19,9 +19,12 @@
 #	limitations under the License.
 #
 
+# Remove base image tag, it is not needed for the final image
+sed 's#FROM metacall/core AS dependency##' $DOCKERFILE_PATH &> $DOCKERFILE_PATH.sed
+
 # Build CLI Image
 docker build \
 	--build-arg DISABLE_CACHE=`date +%s` \
 	-t metacall/cli \
-	-f $DOCKERFILE_PATH \
+	-f $DOCKERFILE_PATH.sed \
 	..
