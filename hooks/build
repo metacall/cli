@@ -20,11 +20,11 @@
 #
 
 # Remove base image tag, it is not needed for the final image
-sed 's#FROM metacall/core AS dependency##' $DOCKERFILE_PATH &> $DOCKERFILE_PATH.sed
+sed -i 's#FROM metacall/core AS dependency##' $DOCKERFILE_PATH
 
 # Build CLI Image
 docker build \
 	--build-arg DISABLE_CACHE=`date +%s` \
 	-t metacall/cli \
-	-f $DOCKERFILE_PATH.sed \
+	-f $DOCKERFILE_PATH \
 	..

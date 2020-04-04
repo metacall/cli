@@ -22,6 +22,7 @@ FROM metacall/core AS dependency
 
 # TODO: This dependency must be from metacall/distributable
 # instead from the core, but it is not automated yet.
+# Replace from hooks/build the sed command too.
 
 # MetaCall CLI Image
 FROM alpine:latest
