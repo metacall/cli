@@ -20,7 +20,7 @@
 #
 
 # Remove base image tag, it is not needed for the final image
-sed -i 's#FROM metacall/core AS dependency##' $DOCKERFILE_PATH
+sed -i 's/FROM metacall/#FROM metacall/' $DOCKERFILE_PATH
 
 # Build CLI Image
 docker build \

@@ -5,10 +5,13 @@ This repository provides a Docker fallback option for architectures and operativ
 ## Build Commands
 
 ```sh
-docker build -t metacall/cli .
+sed -i 's/FROM metacall/#FROM metacall/' Dockerfile
+docker build --build-arg DISABLE_CACHE=`date +%s` -t metacall/cli .
 docker run --rm -it metacall/cli
 ```
 
 ## Set up CLI
+
+TODO
 
 `.bashrc` `.zshrc`
