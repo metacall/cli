@@ -4,11 +4,11 @@ This repository provides a Docker fallback option for architectures and operativ
 
 ## Build Commands
 
-
+The `sed` is used to remove unused layer from the Dockerfile. The build is done disabling the cache of the CLI download layer so it always will download the latest version of the CLI.
 
 ```sh
-sed -i 's/FROM metacall/#FROM metacall/' Dockerfile
-docker build --build-arg DISABLE_CACHE=`date +%s` -t metacall/cli .
+sed 's/FROM metacall/#FROM metacall/' Dockerfile > Dockerfile.build
+docker build --build-arg DISABLE_CACHE=`date +%s` -t metacall/cli -f Dockerfile.build .
 ```
 
 ## Set Up `metacall` Command
