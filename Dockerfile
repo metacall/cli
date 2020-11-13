@@ -40,6 +40,7 @@ ARG DISABLE_CACHE=0
 # Install MetaCall
 RUN apk add --no-cache --update --virtual .build-deps curl \
 	&& curl -sL https://raw.githubusercontent.com/metacall/install/master/install.sh | sh \
-	&& apk del .build-deps
+	&& apk del .build-deps \
+	&& mkdir -p /metacall/source
 
 ENTRYPOINT [ "metacall" ]
