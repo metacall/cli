@@ -13,7 +13,7 @@ docker pull metacall/cli
 Then set up the `metacall` command as an alias. This snippet of code must be pasted in your `.bashrc` or `.zshrc`:
 
 ```sh
-alias metacall='function mc() { docker run --rm --network host -e "LOADER_SCRIPT_PATH=/metacall/source" -v `pwd`:/metacall/source -it metacall/cli $@; }; mc'
+alias metacall='function mc() { docker run --rm --network host -e "LOADER_SCRIPT_PATH=/metacall/source" -w /metacall/source -v `pwd`:/metacall/source -it metacall/cli $@; }; mc'
 ```
 
 ## Build
