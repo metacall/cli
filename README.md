@@ -24,3 +24,13 @@ In case of you want to build it yourself. The `sed` is used to remove unused lay
 sed 's/FROM metacall/#FROM metacall/' Dockerfile > Dockerfile.build
 docker build --build-arg DISABLE_CACHE=`date +%s` -t metacall/cli -f Dockerfile.build .
 ```
+
+## Using a Different Version
+
+In case of you want to patch the CLI version with a new one, a simple way of doing it is to download the tarball you want to patch from here (https://github.com/metacall/distributable/releases). Then untar it into `/` with **root permissions**, give user permissions and mount that into the volume when running the CLI:
+
+```sh
+tar -xvf metacall-tarball-linux-amd64.tar.gz -C /
+chown -R your_user:your_user /gnu
+alias metacall='function mc() { docker run --rm --network host -e "LOADER_SCRIPT_PATH=/metacall/source" -w /metacall/source -v `pwd`:/metacall/source -v /gnu:/gnu -it metacall/cli $@; }; mc'
+```
