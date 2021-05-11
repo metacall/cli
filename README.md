@@ -34,3 +34,11 @@ tar -xvf metacall-tarball-linux-amd64.tar.gz -C /
 chown -R your_user:your_user /gnu
 alias metacall='function mc() { docker run --rm --network host -e "LOADER_SCRIPT_PATH=/metacall/source" -w /metacall/source -v `pwd`:/metacall/source -v /gnu:/gnu -it metacall/cli $@; }; mc'
 ```
+
+## Troubleshooting
+
+- The CLI does not found the packages I have recently installed with `metacall pip3 install -r requirements.txt`:
+  ```sh
+  alias metacall='function mc() { docker run --rm --network host -e "LOADER_SCRIPT_PATH=/metacall/source" -w /metacall/source -v `pwd`:/metacall/source --entrypoint sh -it metacall/cli; }; mc'
+  ```
+  Modify the entry point to get a bash so the data can be shared between commands.
