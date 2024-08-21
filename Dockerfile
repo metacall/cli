@@ -2,7 +2,7 @@
 #	MetaCall CLI by Parra Studios
 #	Porable Command Line Interface for MetaCall using Docker.
 #
-#	Copyright (C) 2016 - 2020 Vicente Eduardo Ferrer Garcia <vic798@gmail.com>
+#	Copyright (C) 2016 - 2024 Vicente Eduardo Ferrer Garcia <vic798@gmail.com>
 #
 #	Licensed under the Apache License, Version 2.0 (the "License");
 #	you may not use this file except in compliance with the License.
@@ -16,12 +16,6 @@
 #	See the License for the specific language governing permissions and
 #	limitations under the License.
 #
-
-# Create a dependency with MetaCall Core Image in order to trigger Docker Hub builds
-FROM metacall/core AS dependency
-
-# TODO: This dependency must be from metacall/distributable
-# instead from the core, but it is not automated yet.
 
 # MetaCall CLI Image
 FROM alpine:latest

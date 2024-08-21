@@ -18,11 +18,10 @@ alias metacall='function mc() { docker run --rm --network host -e "LOADER_SCRIPT
 
 ## Build
 
-In case of you want to build it yourself. The `sed` is used to remove unused layer from the Dockerfile. The build is done disabling the cache of the CLI download layer so it always will download the latest version of the CLI.
+In case of you want to build it yourself. The build is done disabling the cache of the CLI download layer so it always will download the latest version of the CLI.
 
 ```sh
-sed 's/FROM metacall/#FROM metacall/' Dockerfile > Dockerfile.build
-docker build --build-arg DISABLE_CACHE=`date +%s` -t metacall/cli -f Dockerfile.build .
+docker build --build-arg DISABLE_CACHE=`date +%s` -t metacall/cli -f Dockerfile .
 ```
 
 ## Using a Different Version
