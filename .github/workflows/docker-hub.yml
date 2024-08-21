@@ -21,6 +21,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Build Docker Image
+        run: docker build --build-arg DISABLE_CACHE=`date +%s` -t metacall/cli -f Dockerfile .
+
       - name: Login to DockerHub
         run: docker login -u "${{ secrets.DOCKER_HUB_USERNAME }}" -p "${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}"
 
