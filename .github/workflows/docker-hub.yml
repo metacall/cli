@@ -1,6 +1,8 @@
 name: DockerHub
 
 on:
+  workflow_dispatch:
+  pull_request:
   push:
     branches:
       - master
@@ -25,9 +27,11 @@ jobs:
         run: docker build --build-arg DISABLE_CACHE=`date +%s` -t metacall/cli -f Dockerfile .
 
       - name: Login to DockerHub
+        if: github.event_name != 'pull_request'
         run: docker login -u "${{ secrets.DOCKER_HUB_USERNAME }}" -p "${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}"
 
       - name: Push MetaCall CLI Docker Image to DockerHub
+        if: github.event_name != 'pull_request'
         run: |
           docker tag metacall/cli ${{ env.IMAGE_NAME }}:latest
           docker push ${{ env.IMAGE_NAME }}:latest
@@ -39,4 +43,5 @@ jobs:
           fi
 
       - name: Logout from DockerHub
+        if: github.event_name != 'pull_request'
         run: docker logout
